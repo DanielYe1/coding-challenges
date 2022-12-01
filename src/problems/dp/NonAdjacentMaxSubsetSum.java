@@ -1,4 +1,4 @@
-package problems;
+package problems.dp;
 
 public class NonAdjacentMaxSubsetSum {
 
