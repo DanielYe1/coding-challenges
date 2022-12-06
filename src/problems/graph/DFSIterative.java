@@ -2,9 +2,7 @@ package problems.graph;
 
 import java.util.*;
 
-import static java.util.Arrays.asList;
-
-public class DFS {
+public class DFSIterative {
 
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
 
