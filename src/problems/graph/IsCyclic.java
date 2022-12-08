@@ -1,36 +1,42 @@
 package problems.graph;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class IsCyclic {
+
+    public boolean dfs(int actualId, ArrayList<ArrayList<Integer>> adj, boolean[] visited, boolean[] recStack) {
+
+        if (recStack[actualId]) {
+            return true;
+        }
+        if (visited[actualId]){
+            return false;
+        }
+
+        visited[actualId] = true;
+        recStack[actualId] = true;
+
+        for (Integer neighbour : adj.get(actualId)) {
+            if(dfs(neighbour, adj, visited, recStack)){
+                return true;
+            }
+        }
+        recStack[actualId] = false;
+        return false;
+    }
 
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
 
         boolean[] visited = new boolean[V + 1];
-        Stack<Integer> stack = new Stack<>();
-        stack.push(0);
-        ArrayList<Integer> sol = new ArrayList<>();
+        boolean[] recStack = new boolean[V + 1];
 
-        Integer actual;
-
-        for (int i = 0; i < adj.size(); i++) {
-            stack.push(i);
-            while (!stack.isEmpty()) {
-                actual = stack.peek();
-                stack.pop();
-                if (!visited[actual]) {
-                    sol.add(actual);
-                    stack.addAll(adj.get(actual));
-                    visited[actual] = true;
-
-                    return false;
-                }
+        for (int i = 0; i < V; i++) {
+            if(dfs(i, adj, visited, recStack)){
+                return true;
             }
-
         }
+
         return false;
     }
-
 
 }
