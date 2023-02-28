@@ -1,13 +1,13 @@
-package contests.one;
+package contests.four;
 
 public class P1 {
 
-    //revert int
+    //revert int 100%
 
-    public static int solution(int N) {
+    public static void solution(int N) {
         int enable_print = N % 10;
         while (N > 0) {
-            if (enable_print != 0 || N % 10 != 0) {
+            if (enable_print == 0 && N % 10 != 0) {
                 enable_print = 1;
             }
             if (enable_print != 0) {
@@ -15,13 +15,12 @@ public class P1 {
             }
             N = N / 10;
         }
-        return N;
     }
 
     public static void main(String[] args) {
+        solution(100100);
+        System.out.println();
+        solution(809500);
 
-        solution(5908000);
     }
-
-
 }
